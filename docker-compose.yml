@@ -1,0 +1,20 @@
+version: "3"
+services: 
+  web:
+    build: ./nginx
+    ports:
+      - "8080:80"
+    container_name: nginx-web
+    links: 
+      - php
+  php:
+    build: ./php
+    volumes: 
+      - ./src:/usr/myapp
+    container_name: php-fpm
+    links: 
+      - db
+  db:
+    image: mysql:latest
+    env_file: .env
+    container_name: board-mysql
