@@ -16,7 +16,7 @@ class CreateTes extends Migration
         //
         Schema::create('tes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('comment');
+            $table->string('body');
             $table->timestamps();
         });
     }
