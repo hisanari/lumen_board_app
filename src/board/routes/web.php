@@ -12,5 +12,8 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return "Hello, World!";
 });
+
+// home/idにアクセスしたときのコントローラーを設定
+$router->get('home/{id}', 'StaticPagesController@index');
