@@ -8,6 +8,6 @@ class StaticPagesController extends Controller
 {
     public function index($id)
     {
-        return 'controlle is now!' . $id;
+        return view('staticIndex', ['id' => $id]);
     }
 }
