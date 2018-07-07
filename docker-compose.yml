@@ -12,7 +12,7 @@ services:
     volumes: 
       - ./data:/var/lib/mysql
     env_file: .env
-    container_name: board-mysql
+    container_name: mysql
   php:
     build: ./php
     volumes: 
@@ -20,3 +20,9 @@ services:
     container_name: php-fpm
     links: 
       - db
+  # docker-compose run --rm node bashとかで使用する
+  node:
+    build: ./node
+    volumes: 
+      - ./src:/usr/myapp
+
