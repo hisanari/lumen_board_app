@@ -17,3 +17,7 @@ $router->get('/', function () use ($router) {
 
 // home/idにアクセスしたときのコントローラーを設定
 $router->get('home/{id}', 'StaticPagesController@index');
+
+$router->get('test', function() use ($router) {
+    return $router->app->make('view')->make('test');
+});
