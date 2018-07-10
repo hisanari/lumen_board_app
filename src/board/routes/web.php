@@ -21,3 +21,5 @@ $router->get('home/{id}', 'StaticPagesController@index');
 $router->get('test', function() use ($router) {
     return $router->app->make('view')->make('test');
 });
+
+$router->get('api/v1/tes', 'TestJsonController@get');
