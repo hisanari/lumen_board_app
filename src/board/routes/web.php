@@ -15,11 +15,13 @@ $router->get('/', function () use ($router) {
     return "Hello, World!";
 });
 
-// home/idにアクセスしたときのコントローラーを設定
+// /home/idにアクセスしたときのコントローラーを設定
 $router->get('home/{id}', 'StaticPagesController@index');
-
+// /boardにアクセスしたときのコントローラーを設定
+$router->get('board', 'BoardsController@index');
+// /boardにアクセスしたときのコントローラーを設定
 $router->get('test', function() use ($router) {
     return $router->app->make('view')->make('test');
 });
-
-$router->get('api/v1/tes', 'TestJsonController@get');
+// /api/v1/allにアクセスしたときのコントローラーを設定
+$router->get('api/v1/all', 'TestJsonController@all');

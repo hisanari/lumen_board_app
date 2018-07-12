@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\TestJson;
+use App\Board;
 
 class TestJsonController extends Controller
 {
-    public function get()
+    public function all()
     {
+        $boards = Board::all();
         // jsonで返す
-        return response()->json(['id' => 1234, 'name' => 'hisanari']);
+        return response()->json($boards);
     }
 }
