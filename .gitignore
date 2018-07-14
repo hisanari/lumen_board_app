@@ -1,3 +1,4 @@
 /data
 .env
 .vscode/
+/src/node_modules
