@@ -12,7 +12,7 @@
 */
 
 $router->get('/', function () use ($router) {
-    return "Hello, World!";
+  return "Hello, World!";
 });
 
 // /home/idにアクセスしたときのコントローラーを設定
@@ -21,7 +21,7 @@ $router->get('home/{id}', 'StaticPagesController@index');
 $router->get('board', 'BoardsController@index');
 // /boardにアクセスしたときのコントローラーを設定
 $router->get('test', function() use ($router) {
-    return $router->app->make('view')->make('test');
+  return $router->app->make('view')->make('test');
 });
 // /api/v1/allにアクセスしたときのコントローラーを設定
 $router->get('api/v1/all', 'TestJsonController@all');
