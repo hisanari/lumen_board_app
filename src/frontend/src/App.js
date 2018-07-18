@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import BoardResult from './components/BoardResult';
+
+const ENDPOINT = "http://localhost:8080/api/v1/all";
 
 class App extends Component {
   // 状態をもたせる
@@ -9,6 +12,14 @@ class App extends Component {
     this.state = {
     };
   }
+  
+  componentDidMount(){
+		axios
+			.get(ENDPOINT)
+			.then((result) => {
+      console.log(result);
+			});
+		}
 
   render() {
     return (

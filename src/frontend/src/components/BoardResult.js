@@ -1,30 +1,12 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-
-const ENDPOINT = "http://localhost:8080/api/v1/all";
-
-class BoardResult extends Component {
-
-	constructor(props) {
-		super(props);
-			this.state = {
-		};
-	}
-
-	componentDidMount(){
-		axios
-			.get(ENDPOINT)
-			.then((result) => {
-			console.log(result);
-			});
-		}
+import React from 'react';
 
 
-	render(){
-		return(
-			<h1>BoardrResult</h1>
-			);
-	}
-}
+const BoardResult = ({id, title, comment}) => (
+  <ul>
+    <li>{id}</li>
+    <li>{title}</li>
+    <li>{comment}</li>
+  </ul>
+);
 
 export default BoardResult;
