@@ -14,12 +14,12 @@ class App extends Component {
   }
   
   componentDidMount(){
-		axios
-			.get(ENDPOINT)
-			.then((result) => {
+    axios
+    .get(ENDPOINT)
+    .then((result) => {
       console.log(result);
-			});
-		}
+    });
+  }
 
   render() {
     return (
