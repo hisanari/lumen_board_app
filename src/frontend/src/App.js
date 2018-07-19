@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <div>
         <h1>Board</h1>
-        <BoardResult />
+        <BoardResult id={1} title={'test'} comment={'advice'} />
       </div>
     );
   }
