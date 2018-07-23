@@ -1,18 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const BoardResult = ({id, title, comment}) => (
+import  BoardRow from './BoardRow';
+
+const BoardResult = ({results}) => (
   <ul>
-    <li>{id}</li>
-    <li>{title}</li>
-    <li>{comment}</li>
+    {results.map(result => (<BoardRow key={result.id} result={result} />))}
   </ul>
 );
 
 BoardResult.propTypes = {
-  id   : PropTypes.number,
-  title: PropTypes.string,
-  comment : PropTypes.string,
+  results   : PropTypes.array,
 }
 
 export default BoardResult;

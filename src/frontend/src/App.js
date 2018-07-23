@@ -10,6 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      results: [],
     };
   }
   
@@ -17,7 +18,8 @@ class App extends Component {
     axios
     .get(ENDPOINT)
     .then((result) => {
-      console.log(result);
+      this.setState({results: result.data});
+      console.log(this.state.results);
     });
   }
 
@@ -25,7 +27,7 @@ class App extends Component {
     return (
       <div>
         <h1>Board</h1>
-        <BoardResult id={1} title={'test'} comment={'advice'} />
+        <BoardResult results={this.state.results} />
       </div>
     );
   }
