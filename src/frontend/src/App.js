@@ -27,7 +27,15 @@ class App extends Component {
     return (
       <div>
         <h1>Board</h1>
-        <BoardResult results={this.state.results} />
+        {this.state.results.map(
+          result => (
+            <BoardResult 
+            key={result.id}
+            id={result.id}
+            title={result.title}
+            comment={result.comment}
+            />
+          ))}
       </div>
     );
   }
