@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import BoardResult from './components/BoardResult';
 
-const ENDPOINT = "http://localhost:8080/api/v1/all";
+const ENDPOINT = "http://localhost:8080/api/v1/";
 
 class App extends Component {
   // 状態をもたせる
@@ -16,7 +16,7 @@ class App extends Component {
   
   componentDidMount(){
     axios
-    .get(ENDPOINT)
+    .get(ENDPOINT + "allBoard")
     .then((result) => {
       this.setState({results: result.data});
       console.log(this.state.results);

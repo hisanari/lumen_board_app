@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Board;
 
-class TestJsonController extends Controller
+class BoardApiController extends Controller
 {
-  public function all()
+  public function allBoard()
   {
     $boards = Board::all();
     // jsonで返す

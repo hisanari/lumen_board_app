@@ -19,9 +19,9 @@ $router->get('/', function () use ($router) {
 $router->get('home/{id}', 'StaticPagesController@index');
 // /boardにアクセスしたときのコントローラーを設定
 $router->get('board', 'BoardsController@index');
-// /boardにアクセスしたときのコントローラーを設定
-$router->get('test', function() use ($router) {
-  return $router->app->make('view')->make('test');
-});
+
 // /api/v1/allにアクセスしたときのコントローラーを設定
-$router->get('api/v1/all', 'TestJsonController@all');
+$router->group(['prefix' => 'api/v1'], function() use ($router)
+{
+  $router->get('allBoard', 'BoardApiController@allBoard');
+});
