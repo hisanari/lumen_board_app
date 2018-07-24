@@ -24,4 +24,5 @@ $router->get('board', 'BoardsController@index');
 $router->group(['prefix' => 'api/v1'], function() use ($router)
 {
   $router->get('allBoard', 'BoardApiController@allBoard');
+  $router->post('createBoard', 'BoardApiController@createBoard');
 });

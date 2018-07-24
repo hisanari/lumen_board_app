@@ -34,6 +34,7 @@ class App extends Component {
             id={result.id}
             title={result.title}
             comment={result.comment}
+            created_at={result.created_at}
             />
           ))}
       </div>
