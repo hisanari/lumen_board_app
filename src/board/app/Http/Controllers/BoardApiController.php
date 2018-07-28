@@ -20,5 +20,7 @@ class BoardApiController extends Controller
     $newBoard->title = $request->title;
     $newBoard->comment = $request->comment;
     $newBoard->save();
+    $boards = Board::all();
+    return response()->json($boards);
   }
 }

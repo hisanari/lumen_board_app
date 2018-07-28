@@ -19,26 +19,26 @@ class App extends Component {
     this.getBorad();
   }
 
+  setBoardData(result){
+    this.setState({results: result.data});
+  }
+
   getBorad(){
     axios
     .get(ENDPOINT + "allBoard")
     .then((result) => {
-      this.setState({results: result.data});
-      // console.log(this.state.results);
+      this.setBoardData(result);
     });
   }
 
   handleBoardSubmit = newBoard => {
-    console.log(newBoard)
     axios.post(ENDPOINT + 'createBoard', {
       title: newBoard.title,
       comment: newBoard.comment
     }).then((result) => {
-      // console.log(responce);
-      this.getBorad();      
+      this.setBoardData(result);
     });
-
-  } 
+  }
 
   render() {
     return (
