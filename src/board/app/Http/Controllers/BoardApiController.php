@@ -16,11 +16,19 @@ class BoardApiController extends Controller
 
   public function createBoard(Request $request)
   {
-    $newBoard = new Board;
-    $newBoard->title = $request->title;
-    $newBoard->comment = $request->comment;
-    $newBoard->save();
-    $boards = Board::all();
-    return response()->json($boards);
+    $newComment = new Board;
+    $newComment->title = $request->title;
+    $newComment->comment = $request->comment;
+    $newComment->save();
+    $Allboards = Board::all();
+    return response()->json($Allboards);
+  }
+
+  public function deleteBoard($id)
+  {
+    $targetComment = Board::find($id);
+    $targetComment->delete();
+    $Allboards = Board::all();
+    return response()->json($Allboards);
   }
 }
