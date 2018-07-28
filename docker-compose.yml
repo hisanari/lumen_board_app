@@ -23,6 +23,9 @@ services:
   # docker-compose run --rm node bashとかで使用する
   node:
     build: ./node
+    ports:
+      - "3000:3000"
     volumes: 
       - ./src:/usr/myapp
+    command: "yarn start"
 
