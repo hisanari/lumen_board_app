@@ -25,9 +25,9 @@ class AddBoardForm extends Component {
       title: this.state.title,
       comment: this.state.comment,
     };
-    this.props.onSubmit(newComment);
-    
+    this.props.onSubmit(newComment);    
   }
+
   render(){
     return(
       <form onSubmit={(e) => this.handleSubmit(e)}>
