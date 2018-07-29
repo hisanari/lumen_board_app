@@ -52,8 +52,8 @@ class AddBoardForm extends Component {
           <TextField
             name="title"
             label="title"
+            placeholder="title"
             className={classes.textField}
-            value={this.state.title}
             onChange={e => this.handleTitleInput(e.target.value)}
           />
         </FormControl>
@@ -63,7 +63,7 @@ class AddBoardForm extends Component {
           name="comment"
           label="comment"
           className={classes.textField}
-          value={this.state.comment} 
+          placeholder="comment"
           onChange={e => this.handleCommentInput(e.target.value)}
         />
         </FormControl>
