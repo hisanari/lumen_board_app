@@ -11,6 +11,9 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: 200,
+  },
+  button: {
+    margin: theme.spacing.unit,
   }
 });
 
@@ -64,7 +67,7 @@ class AddBoardForm extends Component {
           onChange={e => this.handleCommentInput(e.target.value)}
         />
         </FormControl>
-        <Button type="submit" color="primary" variant="fab"><AddIcon /></Button>
+        <Button type="submit" color="primary" variant="contained">Add</Button>
       </form>
     );
   }
