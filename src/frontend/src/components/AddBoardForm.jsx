@@ -67,7 +67,14 @@ class AddBoardForm extends Component {
           onChange={e => this.handleCommentInput(e.target.value)}
         />
         </FormControl>
-        <Button type="submit" color="primary" variant="contained">Add</Button>
+        <Button
+          type="submit"
+          color="primary"
+          variant="contained"
+          className={classes.button}
+          >
+          Add
+          </Button>
       </form>
     );
   }
