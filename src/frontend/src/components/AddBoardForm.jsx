@@ -1,6 +1,19 @@
 import React, { Component} from 'react';
 import PropTypes from 'prop-types';
 
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import { FormControl, TextField } from '@material-ui/core';
+
+const styles = theme => ({
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200,
+  }
+});
+
 class AddBoardForm extends Component {
   constructor(props) {
     super(props);
@@ -29,25 +42,29 @@ class AddBoardForm extends Component {
   }
 
   render(){
-    return(
+    const { classes } = this.props;
+    return( 
       <form onSubmit={(e) => this.handleSubmit(e)}>
-        <label>title:</label> 
-        <input 
-          type="text"
-          name="title"
-          value={this.state.title}
-          onChange={e => this.handleTitleInput(e.target.value)}
-        />
-          
-        <label>comment:</label>
-        <input
-          type="text"
+        <FormControl>
+          <TextField
+            name="title"
+            label="title"
+            className={classes.textField}
+            value={this.state.title}
+            onChange={e => this.handleTitleInput(e.target.value)}
+          />
+        </FormControl>
+
+        <FormControl>
+        <TextField
           name="comment"
+          label="comment"
+          className={classes.textField}
           value={this.state.comment} 
           onChange={e => this.handleCommentInput(e.target.value)}
         />
-        
-        <button type="submit">Add</button>
+        </FormControl>
+        <Button type="submit" color="primary" variant="fab"><AddIcon /></Button>
       </form>
     );
   }
@@ -57,4 +74,4 @@ AddBoardForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 }
 
-export default AddBoardForm;
+export default withStyles(styles)(AddBoardForm);
