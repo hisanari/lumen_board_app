@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+import Button from '@material-ui/core/Button';
+
 class DeleteBoard extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +16,13 @@ class DeleteBoard extends Component {
 
   render(){
     return(
-      <button onClick={e => this.handleOnClick(e, this.props.id)}>delete</button>
+      <Button
+        variant="contained"
+        color="secondary"
+        size="small"
+        onClick={e => this.handleOnClick(e, this.props.id)}>
+        delete
+      </Button>
     );
   }
 }

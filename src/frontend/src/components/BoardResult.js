@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Typography from '@material-ui/core/Typography';
+
+
 const BoardResult = ({id, title, comment, created_at}) => (
-  <ul>
-    <li>{id}</li>
-    <li>{title}</li>
-    <li>{comment}</li>
-    <li>{created_at}</li>
-  </ul>
+  <div>
+  <Typography variant="title" component="h2">{id}. {title}</Typography>
+  <Typography>{comment}</Typography>
+  <Typography>{created_at}</Typography>
+  </div>
 );
 
 BoardResult.propTypes = {

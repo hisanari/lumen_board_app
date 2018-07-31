@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+
 import BoardResult from './components/BoardResult';
 import AddBoardForm from './components/AddBoardForm';
 import DeleteBoard from './components/DeleteBoard';
@@ -60,13 +66,19 @@ class App extends Component {
         />
         {this.state.results.map(
           result => (
-            <div key={result.id}>
-              <BoardResult {...result} />
-              <DeleteBoard
-                onDelete={id => this.handleBoardDelete(id)}
-                id={result.id}
-              />
-              <hr />
+            <div key={result.id} style={{ marginBottom: 20 }}>
+            <Card>
+              <CardContent>
+                <BoardResult {...result} />
+              </CardContent>
+              <hr style={{ marginBottom: 0 }}/>
+              <CardActions>
+                <DeleteBoard
+                  onDelete={id => this.handleBoardDelete(id)}
+                 id={result.id}
+                />
+              </CardActions>
+            </Card>
             </div>
           ))}
       </div>

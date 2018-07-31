@@ -46,7 +46,8 @@ class AddBoardForm extends Component {
   render(){
     const { classes } = this.props;
     return( 
-      <form onSubmit={(e) => this.handleSubmit(e)}>
+      <form onSubmit={(e) => this.handleSubmit(e)} style={{ marginBottom: 33 }}
+      >
         <FormControl>
           <TextField
             name="title"
