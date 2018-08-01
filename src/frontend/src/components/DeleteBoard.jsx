@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Tooltip from '@material-ui/core/Tooltip';
+
 
 const styles = thema => ({
   deleteButon: {
-    margin: thema.spacing.unit,
     padding: thema.spacing.unit,
   }
 });
@@ -25,14 +27,15 @@ class DeleteBoard extends Component {
   render(){
     const { classes } = this.props;
     return(
-      <Button
-        variant="contained"
-        color="secondary"
-        size="small"
-        className={classes.deleteButon}
-        onClick={e => this.handleOnClick(e, this.props.id)}>
-        delete
-      </Button>
+      <Tooltip title="Delete">
+        <IconButton
+          variant="fab"
+          size="small"
+          className={classes.deleteButon}
+          onClick={e => this.handleOnClick(e, this.props.id)}>
+          <DeleteIcon />
+        </IconButton>
+      </Tooltip>
     );
   }
 }

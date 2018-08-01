@@ -1,10 +1,12 @@
 import React, { Component} from 'react';
 import PropTypes from 'prop-types';
 
+import { FormControl, TextField, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
-import { FormControl, TextField, Typography } from '@material-ui/core';
+import Tooltip from '@material-ui/core/Tooltip';
+import AddIcon from '@material-ui/icons/Add';
 
 
 const styles = theme => ({
@@ -88,14 +90,16 @@ class AddBoardForm extends Component {
               onChange={e => this.handleCommentInput(e.target.value)}
             />
             </FormControl>
-            <Button
-              type="submit"
-              color="primary"
-              variant="contained"
-              className={classes.button}
-              >
-              Add
-              </Button>
+
+            <Tooltip title="Add">
+              <Button
+                type="submit"
+                color="primary"
+                variant="fab"
+                className={classes.button}>
+                  <AddIcon />
+                </Button>
+              </Tooltip>
           </form>
         </Card>
       </div>
