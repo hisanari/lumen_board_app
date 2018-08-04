@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 const BoardResult = ({id, title, comment, created_at}) => (
   <div>
   <Typography variant="title" component="h2">{id}. {title}</Typography>
-  <Typography>{comment}</Typography>
+  <Typography style={{ fontSize: "18px" }}>{comment}</Typography>
   <Typography>{created_at}</Typography>
   </div>
 );
