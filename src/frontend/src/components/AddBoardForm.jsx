@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FormControl, TextField, Typography } from '@material-ui/core';
@@ -28,47 +28,19 @@ const styles = theme => ({
   }
 });
 
-class AddBoardForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: 'title',
-      comment: 'comment',
-    };
-  }
-
-  handleTitleInput = title => {
-    this.setState({ title });
-  }
-
-  handleCommentInput = comment => {
-    this.setState({ comment });
-  }
-
-  handleSubmit = e => {
-    e.preventDefault();
-
-    const newComment = {
-      title: this.state.title,
-      comment: this.state.comment,
-    };
-    this.props.onSubmit(newComment);
-  }
-
-  render(){
-    const { classes } = this.props;
+const AddBoardForm = props => {
+    const { classes } = props;
     return(
       <div>
         <Card>
           <Typography
             variant="title"
             component="h3"
-            className={classes.title}
-            >
+            className={classes.title}>
             Say anything
           </Typography>
           <form 
-            onSubmit={(e) => this.handleSubmit(e)}
+            onSubmit={(e) => props.onSubmit(e)}
             className={classes.formStyle}>
 
             <FormControl>
@@ -77,7 +49,7 @@ class AddBoardForm extends Component {
                 label="title"
                 placeholder="title"
                 className={classes.textField}
-                onChange={e => this.handleTitleInput(e.target.value)}
+                onChange={e => props.onTitleChange(e.target.value)}
               />
             </FormControl>
 
@@ -87,7 +59,7 @@ class AddBoardForm extends Component {
               label="comment"
               className={classes.textField}
               placeholder="comment"
-              onChange={e => this.handleCommentInput(e.target.value)}
+              onChange={e => props.onCommentChange(e.target.value)}
             />
             </FormControl>
 
@@ -104,11 +76,12 @@ class AddBoardForm extends Component {
         </Card>
       </div>
     );
-  }
 }
 
 AddBoardForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  onTitleChange: PropTypes.func.isRequired,
+  onCommentChange: PropTypes.func.isRequired,
 }
 
 export default withStyles(styles)(AddBoardForm);

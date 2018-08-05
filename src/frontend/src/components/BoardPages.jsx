@@ -3,12 +3,10 @@ import axios from 'axios';
 
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 
-import BoardResult from './components/BoardResult';
-import AddBoardForm from './components/AddBoardForm';
-import DeleteBoard from './components/DeleteBoard';
+import BoardResult from './BoardResult';
+import AddBoardForm from './AddBoardForm';
+import DeleteBoard from './DeleteBoard';
 
 const ENDPOINT = "http://localhost:8080/api/v1/";
 
@@ -22,11 +20,13 @@ const styles = theme => ({
 
 });
 
-class App extends Component {
+class BoardPages extends Component {
   // 状態をもたせる
   constructor(props) {
     super(props);
     this.state = {
+      title: '',
+      comment: '',
       results: [],
     };
   }
@@ -49,45 +49,62 @@ class App extends Component {
   }
 
   // 作成
-  handleBoardSubmit = newBoard => {
+  handleBoardSubmit = e => {
+    e.preventDefault();
+
+    const newComment = {
+      title: this.state.title,
+      comment: this.state.comment,
+    };
+
     axios.post(ENDPOINT + 'createBoard', {
-      title: newBoard.title,
-      comment: newBoard.comment
+      title: newComment.title,
+      comment: newComment.comment
     }).then((result) => {
       this.setBoardData(result);
     });
   }
 
   // 削除
-  handleBoardDelete = id => {
+  handleBoardDelete = (e, id) => {
+    e.preventDefault();
     axios.delete(ENDPOINT + 'deleteBoard/' + id)
     .then((result) => {
       this.setBoardData(result);
     })
   }
 
+
+  handleTitleChange = title => {
+    this.setState({ title });
+  }
+
+  handleCommentChange = comment => {
+    this.setState({ comment });
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <div>
-        <h1>Board</h1>
+        <h1>Board {this.props.title}</h1>
           <AddBoardForm
+            title={this.state.title}
+            comment={this.state.comment}
+            onTitleChange={title => this.handleTitleChange(title)}
+            onCommentChange={title => this.handleCommentChange(title)}
             onSubmit={newBoard => this.handleBoardSubmit(newBoard)}
           />
         {this.state.results.map(
           result => (
             <div key={result.id}>
             <Card className={classes.cardStyle}>
-              <CardContent>
-                <BoardResult {...result} />
-              </CardContent>
+              <BoardResult {...result} />
               <hr style={{ marginBottom: 0 }}/>
-              <CardActions>
                 <DeleteBoard
-                  onDelete={id => this.handleBoardDelete(id)}
-                 id={result.id}
+                  onDelete={(e, id) => this.handleBoardDelete(e, id)}
+                  id={result.id}
                 />
-              </CardActions>
             </Card>
             </div>
           ))}
@@ -96,4 +113,4 @@ class App extends Component {
   }
 }
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(BoardPages);

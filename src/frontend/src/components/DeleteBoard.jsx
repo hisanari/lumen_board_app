@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -13,35 +13,24 @@ const styles = thema => ({
   }
 });
 
-class DeleteBoard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  handleOnClick = (e, id) => {
-    e.preventDefault();
-    this.props.onDelete(id);
-  }
-
-  render(){
-    const { classes } = this.props;
-    return(
-      <Tooltip title="Delete">
-        <IconButton
-          variant="fab"
-          size="small"
-          className={classes.deleteButon}
-          onClick={e => this.handleOnClick(e, this.props.id)}>
-          <DeleteIcon />
-        </IconButton>
-      </Tooltip>
-    );
-  }
+const DeleteBoard = props => {
+  const { classes } = props;
+  return(
+    <Tooltip title="Delete">
+      <IconButton
+        variant="fab"
+        size="small"
+        className={classes.deleteButon}
+        onClick={e => props.onDelete(e, props.id)}>
+        <DeleteIcon />
+      </IconButton>
+    </Tooltip>
+  );
 }
 
 DeleteBoard.protoType = {
   onDelete: PropTypes.func.isRequired,
+  id: PropTypes.number,
 }
 
 export default withStyles(styles)(DeleteBoard);

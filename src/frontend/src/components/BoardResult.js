@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
-
+import CardContent from '@material-ui/core/CardContent';
 
 const BoardResult = ({id, title, comment, created_at}) => (
   <div>
-  <Typography variant="title" component="h2">{id}. {title}</Typography>
-  <Typography style={{ fontSize: "18px" }}>{comment}</Typography>
-  <Typography>{created_at}</Typography>
+    <CardContent>
+      <Typography variant="title" component="h2">{id}. {title}</Typography>
+      <Typography style={{ fontSize: "18px" }}>{comment}</Typography>
+      <Typography>{created_at}</Typography>
+    </CardContent>
   </div>
 );
 
