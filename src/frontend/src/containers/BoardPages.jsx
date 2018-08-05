@@ -5,9 +5,9 @@ import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 
-import BoardResult from './BoardResult';
-import AddBoardForm from './AddBoardForm';
-import DeleteBoard from './DeleteBoard';
+import BoardResult from '../components/BoardResult';
+import AddBoardForm from '../components/AddBoardForm';
+import DeleteBoard from '../components/DeleteBoard';
 
 const ENDPOINT = "http://localhost:8080/api/v1/";
 
@@ -33,7 +33,14 @@ class BoardPages extends Component {
   }
 
   componentDidMount(){
+    this.unsubscribe = this.props.store.subscribe(() => {
+        this.forceUpdate();
+    });
     this.getBorad();
+  }
+
+  componentWillUnmount(){
+    this.unsubscribe();
   }
 
   setBoardData(result){
@@ -78,7 +85,7 @@ class BoardPages extends Component {
 
   handleTitleChange = e => {
     e.preventDefault();
-    this.props.onTitleChange(e.target.value);
+    this.props.store.dispatch({ type: 'CHANGE_TITLE', title: e.target.value });
   }
 
   handleCommentChange = e => {
@@ -87,11 +94,12 @@ class BoardPages extends Component {
 
   render() {
     const { classes } = this.props;
+    const state = this.props.store.getState();
     return (
       <div>
         <h1>Board</h1>
           <AddBoardForm
-            title={this.props.title}
+            title={state.title}
             comment={this.props.comment}
             onTitleChange={e => this.handleTitleChange(e)}
             onCommentChange={e => this.handleCommentChange(e)}
@@ -116,9 +124,12 @@ class BoardPages extends Component {
 }
 
 BoardPages.propTypes = {
-  title: PropTypes.string.isRequired,
-  comment: PropTypes.string.isRequired,
-  onTitleChange: PropTypes.func.isRequired,
+  store: PropTypes.shape({
+    subscribe: PropTypes.func,
+    getState: PropTypes.func,
+    dispatch: PropTypes.func,
+    
+   }).isRequired,
 }
 
 export default withStyles(styles)(BoardPages);

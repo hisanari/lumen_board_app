@@ -1,4 +1,4 @@
-export default (state= { title: 'Hello!!' }, action) => {
+export default (state= { title: '' }, action) => {
   console.log('action', action);
   switch (action.type) {
     case 'CHANGE_TITLE':
