@@ -30,7 +30,7 @@ const DeleteBoard = props => {
 
 DeleteBoard.protoType = {
   onDelete: PropTypes.func.isRequired,
-  id: PropTypes.number,
+  id: PropTypes.number.isRequired,
 }
 
 export default withStyles(styles)(DeleteBoard);

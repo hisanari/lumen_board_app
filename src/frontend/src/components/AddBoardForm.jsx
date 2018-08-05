@@ -48,8 +48,9 @@ const AddBoardForm = props => {
                 name="title"
                 label="title"
                 placeholder="title"
+                value={props.title}
                 className={classes.textField}
-                onChange={e => props.onTitleChange(e.target.value)}
+                onChange={e => props.onTitleChange(e)}
               />
             </FormControl>
 
@@ -59,7 +60,8 @@ const AddBoardForm = props => {
               label="comment"
               className={classes.textField}
               placeholder="comment"
-              onChange={e => props.onCommentChange(e.target.value)}
+              value={props.comment}
+              onChange={e => props.onCommentChange(e)}
             />
             </FormControl>
 

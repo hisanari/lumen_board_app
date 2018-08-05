@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -75,24 +76,25 @@ class BoardPages extends Component {
   }
 
 
-  handleTitleChange = title => {
-    this.setState({ title });
+  handleTitleChange = e => {
+    e.preventDefault();
+    this.props.onTitleChange(e.target.value);
   }
 
-  handleCommentChange = comment => {
-    this.setState({ comment });
+  handleCommentChange = e => {
+    e.preventDefault();
   }
 
   render() {
     const { classes } = this.props;
     return (
       <div>
-        <h1>Board {this.props.title}</h1>
+        <h1>Board</h1>
           <AddBoardForm
-            title={this.state.title}
-            comment={this.state.comment}
-            onTitleChange={title => this.handleTitleChange(title)}
-            onCommentChange={title => this.handleCommentChange(title)}
+            title={this.props.title}
+            comment={this.props.comment}
+            onTitleChange={e => this.handleTitleChange(e)}
+            onCommentChange={e => this.handleCommentChange(e)}
             onSubmit={newBoard => this.handleBoardSubmit(newBoard)}
           />
         {this.state.results.map(
@@ -111,6 +113,12 @@ class BoardPages extends Component {
       </div>
     );
   }
+}
+
+BoardPages.propTypes = {
+  title: PropTypes.string.isRequired,
+  comment: PropTypes.string.isRequired,
+  onTitleChange: PropTypes.func.isRequired,
 }
 
 export default withStyles(styles)(BoardPages);

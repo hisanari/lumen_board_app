@@ -17,6 +17,8 @@ const render = () => {
   ReactDOM.render(
     <BoardPages 
       title={state.title}
+      comment="test"
+      onTitleChange={title => store.dispatch({type: 'CHANGE_TITLE', title })}
     />,
   document.getElementById('root')
   );

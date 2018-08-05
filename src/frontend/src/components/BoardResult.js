@@ -15,9 +15,9 @@ const BoardResult = ({id, title, comment, created_at}) => (
 );
 
 BoardResult.propTypes = {
-  id : PropTypes.number,
-  title : PropTypes.string,
-  comment: PropTypes.string,
+  id : PropTypes.number.isRequired,
+  title : PropTypes.string.isRequired,
+  comment: PropTypes.string.isRequired,
   created_at: PropTypes.string,
 }
 
