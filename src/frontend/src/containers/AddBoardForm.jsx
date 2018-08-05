@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { FormControl, TextField, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
@@ -8,6 +9,14 @@ import Card from '@material-ui/core/Card';
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 
+// ビューの表示に必要なプロップス
+const boardStateToProps = state => ({
+  title: state.title,
+});
+// アクションを発行に必要なプロップス
+const boardDispatchToProps = dispatch => ({
+  onTitleChange: title => dispatch({ type: 'CHANGE_TITLE', title }),
+});
 
 const styles = theme => ({
   title: {
@@ -50,7 +59,10 @@ const AddBoardForm = props => {
                 placeholder="title"
                 value={props.title}
                 className={classes.textField}
-                onChange={e => props.onTitleChange(e)}
+                onChange={(e) => {
+                  e.preventDefault();
+                  props.onTitleChange(e.target.value);
+                }}
               />
             </FormControl>
 
@@ -81,9 +93,13 @@ const AddBoardForm = props => {
 }
 
 AddBoardForm.propTypes = {
+  title: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onTitleChange: PropTypes.func.isRequired,
   onCommentChange: PropTypes.func.isRequired,
 }
 
-export default withStyles(styles)(AddBoardForm);
+const ConnectedAddBoardForm = connect(boardStateToProps, boardDispatchToProps)(AddBoardForm);
+
+
+export default withStyles(styles)(ConnectedAddBoardForm);
