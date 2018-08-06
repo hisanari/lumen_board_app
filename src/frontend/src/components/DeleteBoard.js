@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Tooltip from '@material-ui/core/Tooltip';
 
+import { deleteBoard } from '../actions/';
 
 const styles = thema => ({
   deleteButon: {
@@ -21,7 +23,10 @@ const DeleteBoard = props => {
         variant="fab"
         size="small"
         className={classes.deleteButon}
-        onClick={e => props.onDelete(e, props.id)}>
+        onClick={(e) => {
+          e.preventDefault();
+          props.deleteBoard(props.id);
+        }}>
         <DeleteIcon />
       </IconButton>
     </Tooltip>
@@ -29,8 +34,14 @@ const DeleteBoard = props => {
 }
 
 DeleteBoard.protoType = {
-  onDelete: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
 }
 
-export default withStyles(styles)(DeleteBoard);
+// ビューの表示に必要なプロップス
+const boardStateToProps = state => ({
+
+});
+
+const ConnectedDeleteBoard = connect(boardStateToProps, { deleteBoard })(DeleteBoard);
+
+export default withStyles(styles)(ConnectedDeleteBoard);

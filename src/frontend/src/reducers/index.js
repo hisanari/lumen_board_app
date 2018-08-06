@@ -18,7 +18,7 @@ const comment =  (state= 'comment', action) => {
   }
 };
 
-const createBoard =  (
+const board =  (
   state= {
     results: [],
   }, 
@@ -29,13 +29,9 @@ const createBoard =  (
       return {
         results: action.result.data
       };
-    case 'CREATE_BOARD':
-      return {
-        results: action.result.data
-      };
     default:
       return state;
   }
 };
 
-export default combineReducers({ title, comment, createBoard });
+export default combineReducers({ title, comment, board });

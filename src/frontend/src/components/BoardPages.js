@@ -24,13 +24,8 @@ const styles = theme => ({
 });
 
 class BoardPages extends Component {
-  // 状態をもたせる
-  // constructor(props) {
-  //   super(props);
-  // }
-
   componentDidMount(){
-    this.props.fetchBoard();
+    // this.props.fetchBoard();
   }
 
   // 削除
@@ -38,7 +33,7 @@ class BoardPages extends Component {
     e.preventDefault();
     axios.delete(ENDPOINT + 'deleteBoard/' + id)
     .then((result) => {
-      this.setBoardData(result);
+      this.props.fetchBoard();
     })
   }
 
@@ -55,7 +50,6 @@ class BoardPages extends Component {
               <BoardResult {...result} />
               <hr style={{ marginBottom: 0 }}/>
                 <DeleteBoard
-                  onDelete={(e, id) => this.handleBoardDelete(e, id)}
                   id={result.id}
                 />
             </Card>
@@ -73,7 +67,7 @@ BoardPages.propTypes = {
 
 // ビューの表示に必要なプロップス
 const boardStateToProps = state => ({
-  results: state.createBoard.results,
+  results: state.board.results,
 });
 
 const ConnectedAddBoardPages = connect(boardStateToProps, { fetchBoard })(BoardPages);

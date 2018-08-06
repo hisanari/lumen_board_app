@@ -20,6 +20,13 @@ export const createBoard = () => (dispatch, getState) => {
     title: getState().title,
     comment: getState().comment,
   }).then((result) => {
-    dispatch({ type: 'CREATE_BOARD', result});
+    dispatch({ type: 'FETCH_BOARD', result});
+  });
+}
+
+export const deleteBoard = (id) => dispatch => {
+  axios.delete(ENDPOINT + 'deleteBoard/' + id)
+  .then((result) => {
+    dispatch({ type: 'FETCH_BOARD', result })
   });
 }
