@@ -11,8 +11,6 @@ import DeleteBoard from './DeleteBoard';
 
 const ENDPOINT = "http://localhost:8080/api/v1/";
 
-
-
 const styles = theme => ({
   cardStyle: {
     marginTop: theme.spacing.unit,
@@ -52,21 +50,21 @@ class BoardPages extends Component {
   }
 
   // 作成
-  handleBoardSubmit = e => {
-    e.preventDefault();
+  // handleBoardSubmit = e => {
+  //   e.preventDefault();
 
-    const newComment = {
-      title: this.state.title,
-      comment: this.state.comment,
-    };
+  //   const newComment = {
+  //     title: this.state.title,
+  //     comment: this.state.comment,
+  //   };
 
-    axios.post(ENDPOINT + 'createBoard', {
-      title: newComment.title,
-      comment: newComment.comment
-    }).then((result) => {
-      this.setBoardData(result);
-    });
-  }
+  //   axios.post(ENDPOINT + 'createBoard', {
+  //     title: newComment.title,
+  //     comment: newComment.comment
+  //   }).then((result) => {
+  //     this.setBoardData(result);
+  //   });
+  // }
 
   // 削除
   handleBoardDelete = (e, id) => {
@@ -77,22 +75,12 @@ class BoardPages extends Component {
     })
   }
 
-  handleCommentChange = e => {
-    e.preventDefault();
-  }
-
   render() {
     const { classes } = this.props;
-    console.log(this.props);
-    
     return (
       <div>
         <h1>Board</h1>
-          <AddBoardForm
-            comment={this.props.comment}
-            onCommentChange={e => this.handleCommentChange(e)}
-            onSubmit={newBoard => this.handleBoardSubmit(newBoard)}
-          />
+          <AddBoardForm />
         {this.state.results.map(
           result => (
             <div key={result.id}>

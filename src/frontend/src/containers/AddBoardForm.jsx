@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import axios from 'axios';
+
 
 import { FormControl, TextField, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
@@ -9,14 +11,7 @@ import Card from '@material-ui/core/Card';
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 
-// ビューの表示に必要なプロップス
-const boardStateToProps = state => ({
-  title: state.title,
-});
-// アクションを発行に必要なプロップス
-const boardDispatchToProps = dispatch => ({
-  onTitleChange: title => dispatch({ type: 'CHANGE_TITLE', title }),
-});
+const ENDPOINT = "http://localhost:8080/api/v1/";
 
 const styles = theme => ({
   title: {
@@ -49,7 +44,10 @@ const AddBoardForm = props => {
             Say anything
           </Typography>
           <form 
-            onSubmit={(e) => props.onSubmit(e)}
+            onSubmit={(e) => {
+              e.preventDefault();
+              props.onSubmit(props.title, props.comment)
+            }}
             className={classes.formStyle}>
 
             <FormControl>
@@ -73,7 +71,10 @@ const AddBoardForm = props => {
               className={classes.textField}
               placeholder="comment"
               value={props.comment}
-              onChange={e => props.onCommentChange(e)}
+              onChange={(e) => {
+                e.preventDefault();
+                props.onCommentChange(e.target.value);
+              }}
             />
             </FormControl>
 
@@ -98,6 +99,26 @@ AddBoardForm.propTypes = {
   onTitleChange: PropTypes.func.isRequired,
   onCommentChange: PropTypes.func.isRequired,
 }
+// ビューの表示に必要なプロップス
+const boardStateToProps = state => ({
+  title: state.title,
+  comment: state.comment,
+});
+
+// アクションを発行に必要なプロップス
+const boardDispatchToProps = dispatch => ({
+  onTitleChange: title => dispatch({ type: 'CHANGE_TITLE', title }),
+  onCommentChange: comment => dispatch({ type: 'CHANGE_COMMENT', comment}),
+  onSubmit: (title, comment) => {
+    axios.post(ENDPOINT + 'createBoard', {
+      title: title,
+      comment: comment,
+    }).then((result) => {
+      dispatch({ type: 'CREATE_BOARD', result});
+    });
+  }
+});
+
 
 const ConnectedAddBoardForm = connect(boardStateToProps, boardDispatchToProps)(AddBoardForm);
 
