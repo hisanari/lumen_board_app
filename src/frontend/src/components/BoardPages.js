@@ -9,6 +9,7 @@ import Card from '@material-ui/core/Card';
 import BoardResult from './BoardResult';
 import AddBoardForm from '../containers/AddBoardForm';
 import DeleteBoard from './DeleteBoard';
+import { fetchBoard } from '../actions/';
 
 const ENDPOINT = "http://localhost:8080/api/v1/";
 
@@ -28,39 +29,9 @@ class BoardPages extends Component {
   //   super(props);
   // }
 
-  // componentDidMount(){
-  //   this.getBorad();
-  // }
-
-  // setBoardData(result){
-  //   this.setState({results: result.data});
-  // }
-
-  // 取得
-  // getBorad(){
-  //   axios
-  //   .get(ENDPOINT + "allBoard")
-  //   .then((result) => {
-  //     this.setBoardData(result);
-  //   });
-  // }
-
-  // 作成
-  // handleBoardSubmit = e => {
-  //   e.preventDefault();
-
-  //   const newComment = {
-  //     title: this.state.title,
-  //     comment: this.state.comment,
-  //   };
-
-  //   axios.post(ENDPOINT + 'createBoard', {
-  //     title: newComment.title,
-  //     comment: newComment.comment
-  //   }).then((result) => {
-  //     this.setBoardData(result);
-  //   });
-  // }
+  componentDidMount(){
+    this.props.fetchBoard();
+  }
 
   // 削除
   handleBoardDelete = (e, id) => {
@@ -105,6 +76,6 @@ const boardStateToProps = state => ({
   results: state.createBoard.results,
 });
 
-const ConnectedAddBoardPages = connect(boardStateToProps)(BoardPages);
+const ConnectedAddBoardPages = connect(boardStateToProps, { fetchBoard })(BoardPages);
 
 export default withStyles(styles)(ConnectedAddBoardPages);

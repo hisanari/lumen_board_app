@@ -25,6 +25,10 @@ const createBoard =  (
   action,
 ) => {
   switch (action.type) {
+    case 'FETCH_BOARD':
+      return {
+        results: action.result.data
+      };
     case 'CREATE_BOARD':
       return {
         results: action.result.data
