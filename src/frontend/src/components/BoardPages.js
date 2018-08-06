@@ -25,7 +25,7 @@ const styles = theme => ({
 
 class BoardPages extends Component {
   componentDidMount(){
-    // this.props.fetchBoard();
+    this.props.fetchBoard();
   }
 
   // 削除
