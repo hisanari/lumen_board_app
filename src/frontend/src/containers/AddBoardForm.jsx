@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
 
 import { FormControl, TextField, Typography } from '@material-ui/core';
@@ -11,7 +10,8 @@ import Card from '@material-ui/core/Card';
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 
-const ENDPOINT = "http://localhost:8080/api/v1/";
+import { setTitle, setComment, createBoard } from '../actions/';
+
 
 const styles = theme => ({
   title: {
@@ -46,7 +46,7 @@ const AddBoardForm = props => {
           <form 
             onSubmit={(e) => {
               e.preventDefault();
-              props.onSubmit(props.title, props.comment)
+              props.createBoard()
             }}
             className={classes.formStyle}>
 
@@ -59,7 +59,7 @@ const AddBoardForm = props => {
                 className={classes.textField}
                 onChange={(e) => {
                   e.preventDefault();
-                  props.onTitleChange(e.target.value);
+                  props.setTitle(e.target.value);
                 }}
               />
             </FormControl>
@@ -73,7 +73,7 @@ const AddBoardForm = props => {
               value={props.comment}
               onChange={(e) => {
                 e.preventDefault();
-                props.onCommentChange(e.target.value);
+                props.setComment(e.target.value);
               }}
             />
             </FormControl>
@@ -95,9 +95,10 @@ const AddBoardForm = props => {
 
 AddBoardForm.propTypes = {
   title: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  onTitleChange: PropTypes.func.isRequired,
-  onCommentChange: PropTypes.func.isRequired,
+  comment: PropTypes.string.isRequired,
+  createBoard: PropTypes.func.isRequired,
+  setTitle: PropTypes.func.isRequired,
+  setComment: PropTypes.func.isRequired,
 }
 // ビューの表示に必要なプロップス
 const boardStateToProps = state => ({
@@ -105,22 +106,7 @@ const boardStateToProps = state => ({
   comment: state.comment,
 });
 
-// アクションを発行に必要なプロップス
-const boardDispatchToProps = dispatch => ({
-  onTitleChange: title => dispatch({ type: 'CHANGE_TITLE', title }),
-  onCommentChange: comment => dispatch({ type: 'CHANGE_COMMENT', comment}),
-  onSubmit: (title, comment) => {
-    axios.post(ENDPOINT + 'createBoard', {
-      title: title,
-      comment: comment,
-    }).then((result) => {
-      dispatch({ type: 'CREATE_BOARD', result});
-    });
-  }
-});
-
-
-const ConnectedAddBoardForm = connect(boardStateToProps, boardDispatchToProps)(AddBoardForm);
+const ConnectedAddBoardForm = connect(boardStateToProps, { setTitle, setComment, createBoard })(AddBoardForm);
 
 
 export default withStyles(styles)(ConnectedAddBoardForm);

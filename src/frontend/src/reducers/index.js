@@ -19,19 +19,19 @@ const comment =  (state= 'comment', action) => {
 };
 
 const createBoard =  (
-  state = {
-    boardResults: [],
+  state= {
+    results: [],
   }, 
   action,
 ) => {
   switch (action.type) {
     case 'CREATE_BOARD':
       return {
-        results: action.results,
+        results: action.result.data
       };
     default:
       return state;
   }
 };
 
-export default combineReducers({ title, comment,createBoard });
+export default combineReducers({ title, comment, createBoard });

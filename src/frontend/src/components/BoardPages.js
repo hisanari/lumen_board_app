@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -23,31 +24,26 @@ const styles = theme => ({
 
 class BoardPages extends Component {
   // 状態をもたせる
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: '',
-      comment: '',
-      results: [],
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
-  componentDidMount(){
-    this.getBorad();
-  }
+  // componentDidMount(){
+  //   this.getBorad();
+  // }
 
-  setBoardData(result){
-    this.setState({results: result.data});
-  }
+  // setBoardData(result){
+  //   this.setState({results: result.data});
+  // }
 
   // 取得
-  getBorad(){
-    axios
-    .get(ENDPOINT + "allBoard")
-    .then((result) => {
-      this.setBoardData(result);
-    });
-  }
+  // getBorad(){
+  //   axios
+  //   .get(ENDPOINT + "allBoard")
+  //   .then((result) => {
+  //     this.setBoardData(result);
+  //   });
+  // }
 
   // 作成
   // handleBoardSubmit = e => {
@@ -81,7 +77,7 @@ class BoardPages extends Component {
       <div>
         <h1>Board</h1>
           <AddBoardForm />
-        {this.state.results.map(
+        {this.props.results.map(
           result => (
             <div key={result.id}>
             <Card className={classes.cardStyle}>
@@ -100,8 +96,15 @@ class BoardPages extends Component {
 }
 
 BoardPages.propTypes = {
+  results: PropTypes.array.isRequired,
 
 }
 
+// ビューの表示に必要なプロップス
+const boardStateToProps = state => ({
+  results: state.createBoard.results,
+});
 
-export default withStyles(styles)(BoardPages);
+const ConnectedAddBoardPages = connect(boardStateToProps)(BoardPages);
+
+export default withStyles(styles)(ConnectedAddBoardPages);
