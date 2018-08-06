@@ -24,17 +24,9 @@ const styles = theme => ({
 });
 
 class BoardPages extends Component {
+
   componentDidMount(){
     this.props.fetchBoard();
-  }
-
-  // 削除
-  handleBoardDelete = (e, id) => {
-    e.preventDefault();
-    axios.delete(ENDPOINT + 'deleteBoard/' + id)
-    .then((result) => {
-      this.props.fetchBoard();
-    })
   }
 
   render() {
