@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -10,8 +9,6 @@ import BoardResult from './BoardResult';
 import AddBoardForm from '../containers/AddBoardForm';
 import DeleteBoard from './DeleteBoard';
 import { fetchBoard } from '../actions/';
-
-const ENDPOINT = "http://localhost:8080/api/v1/";
 
 const styles = theme => ({
   cardStyle: {
