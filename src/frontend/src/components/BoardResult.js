@@ -1,24 +1,46 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Typography from '@material-ui/core/Typography';
-import CardContent from '@material-ui/core/CardContent';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
 
-const BoardResult = ({id, title, comment, created_at}) => (
-  <div>
-    <CardContent>
-      <Typography variant="title" component="h2">{id}. {title}</Typography>
-      <Typography style={{ fontSize: "18px" }}>{comment}</Typography>
-      <Typography>{created_at}</Typography>
-    </CardContent>
-  </div>
-);
+import BoardContent from './BoardContent';
+import DeleteBoard from './DeleteBoard';
 
-BoardResult.propTypes = {
-  id : PropTypes.number.isRequired,
-  title : PropTypes.string.isRequired,
-  comment: PropTypes.string.isRequired,
-  created_at: PropTypes.string,
+const styles = theme => ({
+  cardStyle: {
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit,
+    paddingTop: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
+  }
+});
+
+const BoardResult = props => {
+  const { classes } = props;
+  return(
+    props.results.map((result) => (
+      <div key={result.id}>
+        <Card className={classes.cardStyle}>
+          <BoardContent result={result}/>
+          <DeleteBoard id={result.id} />
+        </Card>
+      </div>
+    ))
+  );
 }
 
-export default BoardResult;
+BoardResult.propTypes = {
+  results : PropTypes.array.isRequired,
+}
+
+// ビューの表示に必要なプロップス
+const boardStateToProps = state => ({
+  results: state.board.results,
+});
+
+const ConnectedBoardResult = connect(boardStateToProps)(BoardResult);
+
+
+export default withStyles(styles)(ConnectedBoardResult);
