@@ -20,7 +20,6 @@ services:
     container_name: php-fpm
     links: 
       - db
-  # docker-compose run --rm node bashとかで使用する
   node:
     build: ./node
     ports:
