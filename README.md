@@ -1,5 +1,5 @@
 ### 掲示板アプリ
-![demo](https://user-images.githubusercontent.com/19617305/43756691-c27f5066-9a50-11e8-9fb1-ab348368472a.gif)
+![demo](https://user-images.githubusercontent.com/19617305/43871780-31103536-9bb9-11e8-9c82-1ec7b2c75c8f.gif)
 ### 説明
 - lumen(PHPフレームワーク)でシンプルなAPIサーバーを構築。
 - フロントエンドはReact/Reduxを使用。
