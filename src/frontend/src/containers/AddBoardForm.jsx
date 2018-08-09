@@ -101,12 +101,12 @@ AddBoardForm.propTypes = {
   setComment: PropTypes.func.isRequired,
 }
 // ビューの表示に必要なプロップス
-const boardStateToProps = state => ({
+const mapStateToProps = state => ({
   title: state.title,
   comment: state.comment,
 });
 
-const ConnectedAddBoardForm = connect(boardStateToProps, { setTitle, setComment, createBoard })(AddBoardForm);
+const ConnectedAddBoardForm = connect(mapStateToProps, { setTitle, setComment, createBoard })(AddBoardForm);
 
 
 export default withStyles(styles)(ConnectedAddBoardForm);
