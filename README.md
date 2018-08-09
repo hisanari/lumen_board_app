@@ -4,6 +4,7 @@
 - lumen(PHPフレームワーク)でシンプルなAPIサーバーを構築。
 - フロントエンドはReact/Reduxを使用。
 - CSSフレームワークはMaterial-UIを使用
+- 開発環境にはDockerを使用
 ### Dockerで使用しているコンテナ
 - nginx
 - php-fpm
