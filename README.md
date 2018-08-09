@@ -1,5 +1,5 @@
 ### 掲示板アプリ
-![demo](https://user-images.githubusercontent.com/19617305/43871780-31103536-9bb9-11e8-9c82-1ec7b2c75c8f.gif)
+![demo](https://user-images.githubusercontent.com/19617305/43872484-d8e16246-9bbc-11e8-8ff1-bea140935d59.gif)
 ### 説明
 - lumen(PHPフレームワーク)でシンプルなAPIサーバーを構築。
 - フロントエンドはReact/Reduxを使用。
@@ -10,7 +10,3 @@
 - php-fpm
 - MySQL
 - node
-### Docker-compose   
-`docker-compose up -d`
-
- 
