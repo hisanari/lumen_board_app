@@ -37,11 +37,6 @@ DeleteBoard.protoType = {
   id: PropTypes.number.isRequired,
 }
 
-// ビューの表示に必要なプロップス
-const boardStateToProps = state => ({
-
-});
-
-const ConnectedDeleteBoard = connect(boardStateToProps, { deleteBoard })(DeleteBoard);
+const ConnectedDeleteBoard = connect(null, { deleteBoard })(DeleteBoard);
 
 export default withStyles(styles)(ConnectedDeleteBoard);

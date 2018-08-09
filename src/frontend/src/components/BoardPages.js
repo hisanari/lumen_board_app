@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 
 import BoardResult from './BoardResult';
 import AddBoardForm from '../containers/AddBoardForm';
@@ -23,16 +22,6 @@ class BoardPages extends Component {
   }
 }
 
-BoardPages.propTypes = {
-  results: PropTypes.array.isRequired,
-
-}
-
-// ビューの表示に必要なプロップス
-const boardStateToProps = state => ({
-  results: state.board.results,
-});
-
-const ConnectedAddBoardPages = connect(boardStateToProps, { fetchBoard })(BoardPages);
+const ConnectedAddBoardPages = connect(null, { fetchBoard })(BoardPages);
 
 export default ConnectedAddBoardPages;
