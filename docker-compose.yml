@@ -1,30 +1,29 @@
 version: "3"
-services: 
+services:
   web:
     build: ./nginx
     ports:
       - "8080:80"
     container_name: nginx-web
-    links: 
+    links:
       - php
   db:
     image: mysql:5.7
-    volumes: 
+    volumes:
       - ./data:/var/lib/mysql
     env_file: .env
     container_name: mysql
   php:
     build: ./php
-    volumes: 
+    volumes:
       - ./src:/usr/myapp
     container_name: php-fpm
-    links: 
+    links:
       - db
   node:
     build: ./node
     ports:
       - "3000:3000"
-    volumes: 
+    volumes:
       - ./src:/usr/myapp
     command: "yarn start"
-
