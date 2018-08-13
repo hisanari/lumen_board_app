@@ -14,26 +14,26 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit,
     paddingTop: theme.spacing.unit,
     paddingBottom: theme.spacing.unit,
-  }
+  },
 });
 
-const BoardResult = props => {
-  const { classes } = props;
-  return(
-    props.results.map((result) => (
+const BoardResult = (props) => {
+  const { results, classes } = props;
+  return (
+    results.map(result => (
       <div key={result.id}>
         <Card className={classes.cardStyle}>
-          <BoardContent result={result}/>
+          <BoardContent result={result} />
           <DeleteBoard id={result.id} />
         </Card>
       </div>
     ))
   );
-}
+};
 
 BoardResult.propTypes = {
-  results : PropTypes.array.isRequired,
-}
+  results: PropTypes.array.isRequired,
+};
 
 // ビューの表示に必要なプロップス
 const mapStateToProps = state => ({

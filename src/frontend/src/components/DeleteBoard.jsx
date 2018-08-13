@@ -7,17 +7,17 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import { deleteBoard } from '../actions/';
+import { deleteBoard } from '../actions/index';
 
 const styles = thema => ({
   deleteButon: {
     padding: thema.spacing.unit,
-  }
+  },
 });
 
-const DeleteBoard = props => {
-  const { classes } = props;
-  return(
+const DeleteBoard = (props) => {
+  const { id, classes } = props;
+  return (
     <Tooltip title="Delete">
       <IconButton
         variant="fab"
@@ -25,17 +25,20 @@ const DeleteBoard = props => {
         className={classes.deleteButon}
         onClick={(e) => {
           e.preventDefault();
-          props.deleteBoard(props.id);
-        }}>
+          props.deleteBoard(id);
+        }}
+      >
         <DeleteIcon />
       </IconButton>
     </Tooltip>
   );
-}
+};
 
-DeleteBoard.protoType = {
+DeleteBoard.propTypes = {
   id: PropTypes.number.isRequired,
-}
+  deleteBoard: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
+};
 
 const ConnectedDeleteBoard = connect(null, { deleteBoard })(DeleteBoard);
 

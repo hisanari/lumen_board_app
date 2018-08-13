@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const title =  (state= '', action) => {
+const title = (state = '', action) => {
   switch (action.type) {
     case 'CHANGE_TITLE':
       return action.title;
@@ -11,7 +11,7 @@ const title =  (state= '', action) => {
   }
 };
 
-const comment =  (state= '', action) => {
+const comment = (state = '', action) => {
   switch (action.type) {
     case 'CHANGE_COMMENT':
       return action.comment;
@@ -22,16 +22,16 @@ const comment =  (state= '', action) => {
   }
 };
 
-const board =  (
-  state= {
+const board = (
+  state = {
     results: [],
-  }, 
+  },
   action,
 ) => {
   switch (action.type) {
     case 'FETCH_BOARD':
       return {
-        results: action.result.data
+        results: action.result.data,
       };
     default:
       return state;
