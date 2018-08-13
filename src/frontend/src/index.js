@@ -6,10 +6,9 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import './index.css';
-// import App from './components/BoardPages';
+import App from './components/BoardPages';
 import reducer from './reducers/index';
 import registerServiceWorker from './registerServiceWorker';
-import BoardPages from './components/BoardPages';
 
 const store = createStore(
   reducer,
@@ -18,7 +17,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <BoardPages />
+    <App />
   </Provider>,
   document.getElementById('root'),
 );
