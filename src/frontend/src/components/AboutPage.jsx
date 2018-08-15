@@ -1,10 +1,14 @@
 import React from 'react';
 
+import MenuComponent from './MenuComponent';
 
 const AboutPage = () => (
-  <h1>
-  About
-  </h1>
+  <div>
+    <h1>
+    About
+    </h1>
+    <MenuComponent />
+  </div>
 );
 
 

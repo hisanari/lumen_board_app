@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import MenuComponent from './MenuComponent';
 import BoardResult from './BoardResult';
 import AddBoardForm from '../containers/AddBoardForm';
 import { fetchBoard } from '../actions/index';
@@ -17,6 +18,7 @@ class BoardPages extends Component {
         <h1>
         Board
         </h1>
+        <MenuComponent />
         <AddBoardForm />
         <BoardResult />
       </div>
