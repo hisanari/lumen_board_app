@@ -17,10 +17,7 @@ class BoardApiController extends Controller
 
   public function createBoard(Request $request)
   {
-    $newComment = new Board;
-    $newComment->title = $request->title;
-    $newComment->comment = $request->comment;
-    $newComment->save();
+    Board::create($request->all());
     $Allboards = Board::all();
     return response()->json($Allboards);
   }
