@@ -33,8 +33,7 @@ class BoardApiController extends Controller
 
   public function deleteBoard($id)
   {
-    $targetBoard = Board::find($id);
-    $targetBoard->delete();
+    $targetBoard = Board::find($id)->delete();
     $Allboards = Board::all();
     return response()->json($Allboards);
   }
