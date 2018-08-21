@@ -7,6 +7,7 @@ import Card from '@material-ui/core/Card';
 
 import BoardContent from './BoardContent';
 import DeleteBoard from './DeleteBoard';
+import EditBoard from './EditBoard';
 
 const styles = theme => ({
   cardStyle: {
@@ -25,6 +26,7 @@ const BoardResult = (props) => {
         <Card className={classes.cardStyle}>
           <BoardContent result={result} />
           <DeleteBoard id={result.id} />
+          <EditBoard id={result.id} />
         </Card>
       </div>
     ))
