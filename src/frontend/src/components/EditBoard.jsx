@@ -2,26 +2,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Edit from '@material-ui/icons/Edit';
 import Tooltip from '@material-ui/core/Tooltip';
-import Modal from '@material-ui/core/Modal';
-import Typography from '@material-ui/core/Typography';
-
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
   editButon: {
     padding: theme.spacing.unit,
   },
-  paper: {
-    position: 'absolute',
-    width: theme.spacing.unit * 50,
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing.unit * 4,
-    top: `${50}%`,
-    left: `${50}%`,
-    transform: `translate(-${50}%, -${50}%)`,
+  divStyle: {
+    display: 'inline',
   },
 });
 
@@ -36,7 +32,7 @@ class EditBoard extends Component {
   render() {
     const { id, classes } = this.props;
     return (
-      <div>
+      <div className={classes.divStyle}>
         <Tooltip title="Edit">
           <IconButton
             variant="fab"
@@ -51,23 +47,54 @@ class EditBoard extends Component {
             <Edit />
           </IconButton>
         </Tooltip>
-        <Modal
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
+        <Dialog
           open={this.state.open}
           onClose={() => {
             this.setState({
               open: false,
             });
           }}
+          aria-labelledby="simple-modal-title"
         >
-          <div className={classes.paper}>
-            <Typography>
-              {id}
-              :MODAL
-            </Typography>
-          </div>
-        </Modal>
+          <DialogTitle>
+          Edit:
+            {id}
+          </DialogTitle>
+          <DialogContent>
+            <TextField
+              margin="dense"
+              id="title"
+              label="Title"
+              type="text"
+              fullWidth
+            />
+            <TextField
+              margin="dense"
+              id="comment"
+              label="Comment"
+              type="text"
+              fullWidth
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => {
+                this.setState({ open: false });
+              }}
+              color="primary"
+            >
+                Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                this.setState({ open: false });
+              }}
+              color="primary"
+            >
+                OK!
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     );
   }
