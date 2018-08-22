@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -11,6 +12,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
+
+import { setEditComment , setEditTitle } from '../actions';
 
 const styles = theme => ({
   editButon: {
@@ -29,8 +32,22 @@ class EditBoard extends Component {
     };
   }
 
+  handleOpen = () => {
+    this.setState({
+      open: true,
+    });
+  }
+
+  handleClose = () => {
+    this.setState({
+      open: false,
+    });
+  }
+
   render() {
-    const { id, classes } = this.props;
+    const {
+      id, editTitle, editComment, classes,
+    } = this.props;
     return (
       <div className={classes.divStyle}>
         <Tooltip title="Edit">
@@ -38,22 +55,14 @@ class EditBoard extends Component {
             variant="fab"
             size="small"
             className={classes.editButon}
-            onClick={() => {
-              this.setState({
-                open: true,
-              });
-            }}
+            onClick={this.handleOpen}
           >
             <Edit />
           </IconButton>
         </Tooltip>
         <Dialog
           open={this.state.open}
-          onClose={() => {
-            this.setState({
-              open: false,
-            });
-          }}
+          onClose={this.handleClose}
           aria-labelledby="simple-modal-title"
         >
           <DialogTitle>
@@ -62,36 +71,41 @@ class EditBoard extends Component {
           </DialogTitle>
           <DialogContent>
             <TextField
-              margin="dense"
+              fullWidth
               id="title"
               label="Title"
               type="text"
-              fullWidth
+              value={editTitle}
+              margin="dense"
+              onChange={(e) => {
+                e.preventDefault();
+                this.props.setEditTitle(e.target.value);
+              }}
             />
             <TextField
-              margin="dense"
+              fullWidth
               id="comment"
               label="Comment"
               type="text"
-              fullWidth
+              value={editComment}
+              margin="dense"
+              onChange={(e) => {
+                e.preventDefault();
+                this.props.setEditComment(e.target.value);
+              }}
             />
           </DialogContent>
           <DialogActions>
             <Button
-              onClick={() => {
-                this.setState({ open: false });
-              }}
               color="primary"
+              onClick={this.handleClose}
             >
-                Cancel
+            Cancel
             </Button>
             <Button
-              onClick={() => {
-                this.setState({ open: false });
-              }}
               color="primary"
             >
-                OK!
+            OK!
             </Button>
           </DialogActions>
         </Dialog>
@@ -102,7 +116,22 @@ class EditBoard extends Component {
 
 EditBoard.propTypes = {
   id: PropTypes.number.isRequired,
+  editTitle: PropTypes.string.isRequired,
+  editComment: PropTypes.string.isRequired,
+  setEditTitle: PropTypes.func.isRequired,
+  setEditComment: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(EditBoard);
+// ビューの表示に必要なプロップス
+const mapStateToProps = state => ({
+  editTitle: state.editTitle,
+  editComment: state.editComment,
+});
+
+const ConnectedEditBoard = connect(
+  mapStateToProps,
+  { setEditTitle, setEditComment },
+)(EditBoard);
+
+export default withStyles(styles)(ConnectedEditBoard);

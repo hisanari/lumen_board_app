@@ -26,7 +26,7 @@ const BoardResult = (props) => {
         <Card className={classes.cardStyle}>
           <BoardContent result={result} />
           <EditBoard id={result.id} />
-          <DeleteBoard id={result.id} />
+          <DeleteBoard id={result.id} title={result.title} />
         </Card>
       </div>
     ))

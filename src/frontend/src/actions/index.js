@@ -4,8 +4,14 @@ const ENDPOINT = 'http://localhost:8080/api/v1/';
 
 
 export const setTitle = title => dispatch => dispatch({ type: 'CHANGE_TITLE', title });
-
 export const setComment = comment => dispatch => dispatch({ type: 'CHANGE_COMMENT', comment });
+
+export const setEditTitle = editTitle => dispatch => dispatch({ type: 'EDIT_TITLE', editTitle });
+export const setEditComment = editComment => dispatch => dispatch({ type: 'EDIT_COMMENT', editComment });
+
+export const toggleDialog = toggleOpen => dispatch => dispatch({ type: 'TOGGLE_DIALOG', toggleOpen });
+export const closeDialog = toggleOpen => dispatch => dispatch({ type: 'TOGGLE_CLOSE', toggleOpen });
+
 
 export const fetchBoard = () => (dispatch) => {
   axios
