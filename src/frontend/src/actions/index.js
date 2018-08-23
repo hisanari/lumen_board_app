@@ -9,10 +9,6 @@ export const setComment = comment => dispatch => dispatch({ type: 'CHANGE_COMMEN
 export const setEditTitle = editTitle => dispatch => dispatch({ type: 'EDIT_TITLE', editTitle });
 export const setEditComment = editComment => dispatch => dispatch({ type: 'EDIT_COMMENT', editComment });
 
-export const toggleDialog = toggleOpen => dispatch => dispatch({ type: 'TOGGLE_DIALOG', toggleOpen });
-export const closeDialog = toggleOpen => dispatch => dispatch({ type: 'TOGGLE_CLOSE', toggleOpen });
-
-
 export const fetchBoard = () => (dispatch) => {
   axios
     .get(`${ENDPOINT}allBoard`)
@@ -29,6 +25,17 @@ export const createBoard = () => (dispatch, getState) => {
     dispatch({ type: 'FETCH_BOARD', result });
     dispatch({ type: 'CLEAR_TITLE' });
     dispatch({ type: 'CLEAR_COMMENT' });
+  });
+};
+
+export const editBoard = id => (dispatch, getState) => {
+  axios.patch(`${ENDPOINT}updateBoard/${id}`, {
+    title: getState().editTitle,
+    comment: getState().editComment,
+  }).then((result) => {
+    dispatch({ type: 'FETCH_BOARD', result });
+    dispatch({ type: 'CLEAR_EDIT_TITLE' });
+    dispatch({ type: 'CLEAR_EDIT_COMMENT' });
   });
 };
 

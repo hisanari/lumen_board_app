@@ -13,7 +13,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 
-import { setEditComment , setEditTitle } from '../actions';
+import { setEditComment , setEditTitle, editBoard } from '../actions';
 
 const styles = theme => ({
   editButon: {
@@ -98,12 +98,20 @@ class EditBoard extends Component {
           <DialogActions>
             <Button
               color="primary"
-              onClick={this.handleClose}
+              onClick={() => {
+                this.props.setEditTitle("");
+                this.props.setEditComment("");
+                this.handleClose();
+              }}
             >
             Cancel
             </Button>
             <Button
               color="primary"
+              onClick={() => {
+                this.props.editBoard(id);
+                this.handleClose();
+              }}
             >
             OK!
             </Button>
@@ -120,6 +128,7 @@ EditBoard.propTypes = {
   editComment: PropTypes.string.isRequired,
   setEditTitle: PropTypes.func.isRequired,
   setEditComment: PropTypes.func.isRequired,
+  editBoard: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
 };
 
@@ -131,7 +140,7 @@ const mapStateToProps = state => ({
 
 const ConnectedEditBoard = connect(
   mapStateToProps,
-  { setEditTitle, setEditComment },
+  { setEditTitle, setEditComment, editBoard },
 )(EditBoard);
 
 export default withStyles(styles)(ConnectedEditBoard);

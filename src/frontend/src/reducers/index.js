@@ -15,6 +15,8 @@ const editTitle = (state = '', action) => {
   switch (action.type) {
     case 'EDIT_TITLE':
       return action.editTitle;
+    case 'CLEAR_EDIT_TITLE':
+      return action.editTitle = '';
     default:
       return state;
   }
@@ -24,6 +26,8 @@ const editComment = (state = '', action) => {
   switch (action.type) {
     case 'EDIT_COMMENT':
       return action.editComment;
+    case 'CLEAR_EDIT_COMMENT':
+      return action.editTitle = '';
     default:
       return state;
   }
