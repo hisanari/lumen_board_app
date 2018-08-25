@@ -15,6 +15,13 @@ class BoardApiController extends Controller
     return response()->json($boards);
   }
 
+  public function showBoard($id)
+  {
+    $board = Board::find($id);
+    // jsonで返す
+    return response()->json($board);
+  }
+
   public function createBoard(Request $request)
   {
     Board::create($request->all());

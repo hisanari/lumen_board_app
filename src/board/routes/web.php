@@ -24,6 +24,7 @@ $router->get('board', 'BoardsController@index');
 $router->group(['prefix' => 'api/v1'], function() use ($router)
 {
   $router->get('boards', 'BoardApiController@boards');
+  $router->get('boards/{id}', 'BoardApiController@showBoard');
   $router->post('createBoard', 'BoardApiController@createBoard');
   $router->patch('updateBoard/{id}', 'BoardApiController@updateBoard');
   $router->delete('deleteBoard/{id}', 'BoardApiController@deleteBoard');
