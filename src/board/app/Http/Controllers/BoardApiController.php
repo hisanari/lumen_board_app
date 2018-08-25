@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class BoardApiController extends Controller
 {
 
-  public function allBoard()
+  public function boards()
   {
     $boards = Board::all();
     // jsonで返す

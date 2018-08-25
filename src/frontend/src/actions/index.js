@@ -11,7 +11,7 @@ export const setEditComment = editComment => dispatch => dispatch({ type: 'EDIT_
 
 export const fetchBoard = () => (dispatch) => {
   axios
-    .get(`${ENDPOINT}allBoard`)
+    .get(`${ENDPOINT}boards`)
     .then((result) => {
       dispatch({ type: 'FETCH_BOARD', result });
     });

@@ -23,7 +23,7 @@ $router->get('board', 'BoardsController@index');
 // /api/v1/allにアクセスしたときのコントローラーを設定
 $router->group(['prefix' => 'api/v1'], function() use ($router)
 {
-  $router->get('allBoard', 'BoardApiController@allBoard');
+  $router->get('boards', 'BoardApiController@boards');
   $router->post('createBoard', 'BoardApiController@createBoard');
   $router->patch('updateBoard/{id}', 'BoardApiController@updateBoard');
   $router->delete('deleteBoard/{id}', 'BoardApiController@deleteBoard');
