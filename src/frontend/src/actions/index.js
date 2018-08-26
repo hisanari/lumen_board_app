@@ -9,11 +9,19 @@ export const setComment = comment => dispatch => dispatch({ type: 'CHANGE_COMMEN
 export const setEditTitle = editTitle => dispatch => dispatch({ type: 'EDIT_TITLE', editTitle });
 export const setEditComment = editComment => dispatch => dispatch({ type: 'EDIT_COMMENT', editComment });
 
-export const fetchBoard = () => (dispatch) => {
+export const fetchAllBoards = () => (dispatch) => {
   axios
     .get(`${ENDPOINT}boards`)
     .then((result) => {
       dispatch({ type: 'FETCH_BOARD', result });
+    });
+};
+
+export const fetchBoard = id => (dispatch) => {
+  axios
+    .get(`${ENDPOINT}boards/${id}`)
+    .then((result) => {
+      dispatch({ type: 'GET_BOARD', result });
     });
 };
 

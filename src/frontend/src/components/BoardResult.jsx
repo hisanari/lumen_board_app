@@ -25,7 +25,10 @@ const BoardResult = (props) => {
       <div key={result.id}>
         <Card className={classes.cardStyle}>
           <BoardContent result={result} />
-          <EditBoard id={result.id} />
+          <EditBoard
+            id={result.id}
+            originTitle={result.title} 
+            originComment={result.comment} />
           <DeleteBoard id={result.id} />
         </Card>
       </div>
@@ -40,7 +43,7 @@ BoardResult.propTypes = {
 // ビューの表示に必要なプロップス
 const mapStateToProps = state => ({
   // 最新のものが最初に来るように反転させて渡す
-  results: state.board.results.reverse(),
+  results: state.boards.results.reverse(),
 });
 
 const ConnectedBoardResult = connect(mapStateToProps)(BoardResult);

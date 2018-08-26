@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import MenuComponent from './MenuComponent';
 import BoardResult from './BoardResult';
 import AddBoardForm from '../containers/AddBoardForm';
-import { fetchBoard } from '../actions/index';
+import { fetchAllBoards } from '../actions/index';
 
 class BoardPages extends Component {
   componentDidMount() {
-    this.props.fetchBoard();
+    this.props.fetchAllBoards();
   }
 
   render() {
@@ -27,9 +27,9 @@ class BoardPages extends Component {
 }
 
 BoardPages.propTypes = {
-  fetchBoard: PropTypes.func.isRequired,
+  fetchAllBoards: PropTypes.func.isRequired,
 };
 
-const ConnectedAddBoardPages = connect(null, { fetchBoard })(BoardPages);
+const ConnectedAddBoardPages = connect(null, { fetchAllBoards })(BoardPages);
 
 export default ConnectedAddBoardPages;

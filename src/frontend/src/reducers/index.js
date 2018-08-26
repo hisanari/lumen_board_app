@@ -4,8 +4,6 @@ const title = (state = '', action) => {
   switch (action.type) {
     case 'CHANGE_TITLE':
       return action.title;
-    case 'CLEAR_TITLE':
-      return action.title = '';
     default:
       return state;
   }
@@ -15,8 +13,6 @@ const editTitle = (state = '', action) => {
   switch (action.type) {
     case 'EDIT_TITLE':
       return action.editTitle;
-    case 'CLEAR_EDIT_TITLE':
-      return action.editTitle = '';
     default:
       return state;
   }
@@ -45,7 +41,7 @@ const comment = (state = '', action) => {
   }
 };
 
-const board = (
+const boards = (
   state = {
     results: [],
   },
@@ -62,5 +58,5 @@ const board = (
 };
 
 export default combineReducers({
-  title, comment, editTitle, editComment, board,
+  title, comment, editTitle, editComment, boards,
 });
