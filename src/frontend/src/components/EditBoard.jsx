@@ -13,7 +13,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 
-import { setEditComment , setEditTitle, editBoard, fetchBoard } from '../actions';
+import {
+  setEditComment,
+  setEditTitle,
+  editBoard,
+  fetchBoard,
+} from '../actions';
 
 const styles = theme => ({
   editButon: {
@@ -46,8 +51,18 @@ class EditBoard extends Component {
 
   render() {
     const {
-      id, editTitle, editComment, originTitle, originComment, classes,
+      id,
+      editTitle,
+      editComment,
+      originTitle,
+      originComment,
+      setEditTitle,
+      setEditComment,
+      fetchBoard,
+      classes,
     } = this.props;
+
+    const { open } = this.state;
     return (
       <div className={classes.divStyle}>
         <Tooltip title="Edit">
@@ -56,9 +71,9 @@ class EditBoard extends Component {
             size="small"
             className={classes.editButon}
             onClick={() => {
-              this.props.setEditTitle(originTitle);
-              this.props.setEditComment(originComment);
-              this.props.fetchBoard(id);
+              setEditTitle(originTitle);
+              setEditComment(originComment);
+              fetchBoard(id);
               this.handleOpen();
             }}
           >
@@ -66,7 +81,7 @@ class EditBoard extends Component {
           </IconButton>
         </Tooltip>
         <Dialog
-          open={this.state.open}
+          open={open}
           onClose={this.handleClose}
           aria-labelledby="simple-modal-title"
         >
@@ -84,7 +99,7 @@ class EditBoard extends Component {
               margin="dense"
               onChange={(e) => {
                 e.preventDefault();
-                this.props.setEditTitle(e.target.value);
+                setEditTitle(e.target.value);
               }}
             />
             <TextField
@@ -96,7 +111,7 @@ class EditBoard extends Component {
               margin="dense"
               onChange={(e) => {
                 e.preventDefault();
-                this.props.setEditComment(e.target.value);
+                setEditComment(e.target.value);
               }}
             />
           </DialogContent>
@@ -104,8 +119,8 @@ class EditBoard extends Component {
             <Button
               color="primary"
               onClick={() => {
-                this.props.setEditTitle("");
-                this.props.setEditComment("");
+                setEditTitle('');
+                setEditComment('');
                 this.handleClose();
               }}
             >
@@ -114,7 +129,7 @@ class EditBoard extends Component {
             <Button
               color="primary"
               onClick={() => {
-                this.props.editBoard(id);
+                editBoard(id);
                 this.handleClose();
               }}
             >
@@ -129,11 +144,13 @@ class EditBoard extends Component {
 
 EditBoard.propTypes = {
   id: PropTypes.number.isRequired,
+  originTitle: PropTypes.string.isRequired,
+  originComment: PropTypes.string.isRequired,
   editTitle: PropTypes.string.isRequired,
   editComment: PropTypes.string.isRequired,
   setEditTitle: PropTypes.func.isRequired,
   setEditComment: PropTypes.func.isRequired,
-  editBoard: PropTypes.func.isRequired,
+  fetchBoard: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
 };
 
