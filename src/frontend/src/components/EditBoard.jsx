@@ -56,9 +56,12 @@ class EditBoard extends Component {
       editComment,
       originTitle,
       originComment,
-      setEditTitle,
-      setEditComment,
-      fetchBoard,
+      // setEditTitle
+      setTitle,
+      // setEditComment
+      setComment,
+      // fetchBoard
+      boards,
       classes,
     } = this.props;
 
@@ -71,9 +74,9 @@ class EditBoard extends Component {
             size="small"
             className={classes.editButon}
             onClick={() => {
-              setEditTitle(originTitle);
-              setEditComment(originComment);
-              fetchBoard(id);
+              setTitle(originTitle);
+              setComment(originComment);
+              boards(id);
               this.handleOpen();
             }}
           >
@@ -99,7 +102,7 @@ class EditBoard extends Component {
               margin="dense"
               onChange={(e) => {
                 e.preventDefault();
-                setEditTitle(e.target.value);
+                setTitle(e.target.value);
               }}
             />
             <TextField
@@ -111,7 +114,7 @@ class EditBoard extends Component {
               margin="dense"
               onChange={(e) => {
                 e.preventDefault();
-                setEditComment(e.target.value);
+                setComment(e.target.value);
               }}
             />
           </DialogContent>
@@ -119,8 +122,8 @@ class EditBoard extends Component {
             <Button
               color="primary"
               onClick={() => {
-                setEditTitle('');
-                setEditComment('');
+                setTitle('');
+                setComment('');
                 this.handleClose();
               }}
             >
@@ -148,9 +151,9 @@ EditBoard.propTypes = {
   originComment: PropTypes.string.isRequired,
   editTitle: PropTypes.string.isRequired,
   editComment: PropTypes.string.isRequired,
-  setEditTitle: PropTypes.func.isRequired,
-  setEditComment: PropTypes.func.isRequired,
-  fetchBoard: PropTypes.func.isRequired,
+  setTitle: PropTypes.func.isRequired,
+  setComment: PropTypes.func.isRequired,
+  boards: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
 };
 
@@ -162,7 +165,12 @@ const mapStateToProps = state => ({
 
 const ConnectedEditBoard = connect(
   mapStateToProps,
-  { setEditTitle, setEditComment, editBoard, fetchBoard },
+  {
+    setTitle: setEditTitle,
+    setComment: setEditComment,
+    boards: fetchBoard,
+    editBoard,
+  },
 )(EditBoard);
 
 export default withStyles(styles)(ConnectedEditBoard);
