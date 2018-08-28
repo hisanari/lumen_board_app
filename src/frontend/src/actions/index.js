@@ -31,8 +31,6 @@ export const createBoard = () => (dispatch, getState) => {
     comment: getState().comment,
   }).then((result) => {
     dispatch({ type: 'FETCH_BOARD', result });
-    dispatch({ type: 'CLEAR_TITLE' });
-    dispatch({ type: 'CLEAR_COMMENT' });
   });
 };
 

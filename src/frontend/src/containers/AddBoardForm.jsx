@@ -48,6 +48,8 @@ const AddBoardForm = (props) => {
           onSubmit={(e) => {
             e.preventDefault();
             props.createBoard();
+            props.setTitle('');
+            props.setComment('');
           }}
           className={classes.formStyle}
         >

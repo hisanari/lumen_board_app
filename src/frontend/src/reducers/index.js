@@ -9,6 +9,15 @@ const title = (state = '', action) => {
   }
 };
 
+const comment = (state = '', action) => {
+  switch (action.type) {
+    case 'CHANGE_COMMENT':
+      return action.comment;
+    default:
+      return state;
+  }
+};
+
 const editTitle = (state = '', action) => {
   switch (action.type) {
     case 'EDIT_TITLE':
@@ -28,16 +37,6 @@ const editComment = (state = '', action) => {
 };
 
 
-const comment = (state = '', action) => {
-  switch (action.type) {
-    case 'CHANGE_COMMENT':
-      return action.comment;
-    case 'CLEAR_COMMENT':
-      return action.comment = '';
-    default:
-      return state;
-  }
-};
 
 const boards = (
   state = {
