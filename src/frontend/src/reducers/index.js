@@ -57,11 +57,22 @@ const snackbarState = (state = false, action) => {
   switch (action.type) {
     case 'OPEN_SNACKBAR':
       return true;
+    case 'CLOSE_SNACKBAR':
+      return false;
+    default:
+      return state;
+  }
+};
+
+const setErrorMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'SET_MESSAGE':
+      return action.status;
     default:
       return state;
   }
 };
 
 export default combineReducers({
-  title, comment, editTitle, editComment, boards, snackbarState,
+  title, comment, editTitle, editComment, boards, snackbarState, setErrorMessage,
 });

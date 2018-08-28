@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import MenuComponent from './MenuComponent';
 import BoardResult from './BoardResult';
+import ErrorSnackbar from './ErrorSnackbar';
 import AddBoardForm from '../containers/AddBoardForm';
 import { fetchAllBoards } from '../actions/index';
 
@@ -21,6 +22,7 @@ class BoardPages extends Component {
         <MenuComponent />
         <AddBoardForm />
         <BoardResult />
+        <ErrorSnackbar />
       </div>
     );
   }
@@ -30,6 +32,10 @@ BoardPages.propTypes = {
   fetchAllBoards: PropTypes.func.isRequired,
 };
 
-const ConnectedAddBoardPages = connect(null, { fetchAllBoards })(BoardPages);
+
+const ConnectedAddBoardPages = connect(
+  null,
+  { fetchAllBoards },
+)(BoardPages);
 
 export default ConnectedAddBoardPages;

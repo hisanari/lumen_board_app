@@ -44,7 +44,7 @@ BoardResult.propTypes = {
 // ビューの表示に必要なプロップス
 const mapStateToProps = state => ({
   // 最新のものが最初に来るように反転させて渡す
-  results: state.boards.results.reverse(),
+  results: state.boards.results,
 });
 
 const ConnectedBoardResult = connect(mapStateToProps)(BoardResult);

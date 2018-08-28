@@ -9,6 +9,9 @@ export const setComment = comment => dispatch => dispatch({ type: 'CHANGE_COMMEN
 export const setEditTitle = editTitle => dispatch => dispatch({ type: 'EDIT_TITLE', editTitle });
 export const setEditComment = editComment => dispatch => dispatch({ type: 'EDIT_COMMENT', editComment });
 
+export const openFormErrorSnackbar = () => dispatch => dispatch({ type: 'OPEN_SNACKBAR' });
+export const closeFormErrorSnackbar = () => dispatch => dispatch({ type: 'CLOSE_SNACKBAR' });
+
 export const fetchAllBoards = () => (dispatch) => {
   axios
     .get(`${ENDPOINT}boards`)
@@ -30,7 +33,19 @@ export const createBoard = () => (dispatch, getState) => {
     title: getState().title,
     comment: getState().comment,
   }).then((result) => {
-    dispatch({ type: 'FETCH_BOARD', result });
+    const { status } = result.data;
+    switch (status) {
+      case 'Error':
+        dispatch({ type: 'SET_MESSAGE', status });
+        dispatch({ type: 'OPEN_SNACKBAR' });
+        break;
+      case 'OK':
+        dispatch({ type: 'SET_MESSAGE', status });
+        dispatch({ type: 'OPEN_SNACKBAR' });
+        dispatch({ type: 'FETCH_BOARD', result });
+        break;
+      default:
+    }
   });
 };
 
