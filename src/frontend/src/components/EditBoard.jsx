@@ -76,7 +76,6 @@ class EditBoard extends Component {
             onClick={() => {
               setTitle(originTitle);
               setComment(originComment);
-              boards(id);
               this.handleOpen();
             }}
           >
