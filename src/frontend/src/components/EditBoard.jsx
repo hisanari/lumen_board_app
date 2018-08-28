@@ -60,8 +60,6 @@ class EditBoard extends Component {
       setTitle,
       // setEditComment
       setComment,
-      // fetchBoard
-      boards,
       classes,
     } = this.props;
 
