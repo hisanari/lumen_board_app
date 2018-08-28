@@ -37,7 +37,6 @@ const editComment = (state = '', action) => {
 };
 
 
-
 const boards = (
   state = {
     results: [],
@@ -46,14 +45,24 @@ const boards = (
 ) => {
   switch (action.type) {
     case 'FETCH_BOARD':
+    console.log(action);
       return {
-        results: action.result.data,
+        results: action.result.data.boardResults.reverse(),
       };
     default:
       return state;
   }
 };
 
+const snackbarState = (state = false, action) => {
+  switch (action.type) {
+    case 'OPEN_SNACKBAR':
+      return true;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
-  title, comment, editTitle, editComment, boards,
+  title, comment, editTitle, editComment, boards, snackbarState,
 });
