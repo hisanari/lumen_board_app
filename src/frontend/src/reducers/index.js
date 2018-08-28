@@ -45,7 +45,6 @@ const boards = (
 ) => {
   switch (action.type) {
     case 'FETCH_BOARD':
-    console.log(action);
       return {
         results: action.result.data.boardResults.reverse(),
       };
